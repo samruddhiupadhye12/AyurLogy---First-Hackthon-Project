@@ -1,0 +1,220 @@
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+    background:#f4f8f4;
+}
+
+/* ================= HEADER ================= */
+
+header{
+    background: linear-gradient(to bottom, #6b8f71, #5f7f66);
+    color:white;
+    padding:20px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+header h1{
+    font-size:28px;
+    font-weight:700;
+}
+
+header input{
+    padding:10px 15px;
+    border:none;
+    border-radius:30px;
+    width:250px;
+    outline:none;
+    font-size:14px;
+}
+
+.cart-box{
+    background:white;
+    color:#1b5e20;
+    padding:8px 18px;
+    border-radius:30px;
+    font-weight:600;
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* ================= CATEGORY & DOSHA ================= */
+
+.category-section,
+.dosha-section{
+    text-align:center;
+    margin:50px 0 20px 0;
+}
+
+.category-section h2,
+.dosha-section h2{
+    margin-bottom:20px;
+    font-size:26px;
+    font-weight:700;
+    color:#1b5e1fe1;
+}
+
+.category-buttons,
+.dosha-buttons{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.category-buttons button,
+.dosha-buttons button{
+    padding:12px 28px;
+    border:none;
+    border-radius:40px;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    transition:0.3s ease;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.category-buttons button{
+    background:linear-gradient(135deg,#2e7d32,#66bb6a);
+    color:white;
+}
+
+.category-buttons button:hover{
+    transform:translateY(-4px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
+
+.vata{
+    background:#42a5f5;
+    color:white;
+}
+
+.pitta{
+    background:#ef5350;
+    color:white;
+}
+
+.kapha{
+    background:#66bb6a;
+    color:white;
+}
+
+.dosha-buttons button:hover{
+    transform:scale(1.08);
+}
+
+/* ================= PRODUCTS ================= */
+
+.products{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    padding:20px;
+    gap:25px;
+}
+
+.card{
+    width:260px;
+    background:white;
+    padding:18px;
+    border-radius:15px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.08);
+    transition:0.3s ease;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+.card h3{
+    font-size:18px;
+    margin-bottom:6px;
+    color:#1b5e20;
+}
+
+.card p{
+    font-size:14px;
+    color:#555;
+    margin-bottom:8px;
+}
+
+.price{
+    font-size:16px;
+    font-weight:bold;
+    color:#2e7d32;
+    margin-bottom:10px;
+}
+
+.buttons{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.cart-btn{
+    flex:1;
+    background:#ff9800;
+    color:white;
+    border:none;
+    padding:8px;
+    border-radius:8px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.cart-btn:hover{
+    background:#fb8c00;
+}
+
+.buy-btn{
+    flex:1;
+    background:#2e7d32;
+    color:white;
+    border:none;
+    padding:8px;
+    border-radius:8px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.buy-btn:hover{
+    background:#1b5e20;
+}
+
+/* ================= SECTION TITLE ================= */
+
+.section-title{
+    text-align:center;
+    margin:40px 0 20px 0;
+}
+
+.section-title h2{
+    font-size:26px;
+    font-weight:700;
+    color:#1b5e20;
+}
+
+@media(max-width:768px){
+    header{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+    header input{
+        width:100%;
+    }
+    .card{
+        width:90%;
+    }
+}

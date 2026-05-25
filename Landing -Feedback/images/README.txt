@@ -1,0 +1,11 @@
+Add your product images here. Use the same filenames as in products.json, for example:
+- aloeveragel.jpg
+- ashwagandhacream.jpg
+- triphalapowder.jpg
+- isabgolhuskpowder.jpg
+- satisabgol.jpg
+- dabarsatisabgol.jpg
+- bhringrajoil.jpg
+- neemoil.jpg
+- tulsidrops.jpg
+- sandalwoodpowder.jpg

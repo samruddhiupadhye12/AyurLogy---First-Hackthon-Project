@@ -1,0 +1,157 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #f6f8ee;
+  color: #4a5568;
+}
+
+/* NAVBAR / HEADER */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  color: #fcfcfc;
+  background: #6b8f71;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  padding: 0 40px;
+  background-color: #6b8f71;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+}
+
+/* Netflix-style: logo hidden initially when coming from landing, then "lands" */
+.logo-just-landed {
+  opacity: 0;
+  transform: scale(0.95);
+  animation: logoLand 0.5s ease-out forwards;
+}
+
+@keyframes logoLand {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.logo img {
+  height: 65px;        /* controls size */
+  width: auto;    
+  margin: 0px;     /* keeps proportion */
+  padding: 0px;
+  object-fit: contain;/* prevents distortion */
+}
+
+#logo_text {
+  font-size: 25px;
+  font-weight: 600;
+  color: #fcfcfc;
+}
+
+
+nav a {
+  margin-left: 10px;
+  margin-right: 10px;
+  text-decoration: none;
+  color: #fcfcfc;
+  font-weight: 500;
+}
+
+.header a {
+  margin-right: 15px;
+  text-decoration: none;
+}
+
+.footer {
+  background-color: #6b8f71;
+  text-align: center;
+  padding: 10px;
+}
+
+
+/* FOOTER */
+footer {
+  padding: 30px;
+  text-align: center;
+  background: #6b8f71;
+  margin-top: 40px;
+  color: #fcfcfc;
+}
+
+.socials {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  cursor: pointer;
+}
+
+
+.socials a {
+  color: #ffffff;
+  font-size: 20px;
+  transition: 0.3s ease;
+}
+
+.socials a:hover {
+  color: rgb(17, 56, 17); 
+  transform: scale(1.2);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .hero, .about {
+    flex-direction: column;
+    text-align: center;
+  }
+  .logo img{
+    height : 34px;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+  }
+
+  .navbar {
+    padding: 20px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    padding: 10px 20px;
+  }
+
+  nav {
+    margin-top: 10px;
+  }
+  
+}

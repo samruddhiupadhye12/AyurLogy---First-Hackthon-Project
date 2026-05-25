@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AyurShop | Ayurlogy</title>
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- Shared header/footer styles from Ayurlogy Front-Back -->
+  <link rel="stylesheet" href="/frontend/info.css">
+
+  <!-- Ayur Shop page CSS -->
+  <link rel="stylesheet" href="/ayush-shop/products.css">
+</head>
+<body>
+
+  <!-- Shared nav bar (loaded from Ayurlogy Front-Back header.html) -->
+  <div id="header"></div>
+
+  <!-- ---------------- AYUR SHOP TOOLBAR (Login / Register / Cart) ---------------- -->
+  <div class="header-section">
+    <div class="logo">
+      <h1>AyurShop</h1>
+    </div>
+
+    <div class="header-right">
+      <div id="auth-links" class="auth-links">
+        <a href="/login"><i class="fa fa-sign-in-alt"></i> Login</a>
+        <a href="/register"><i class="fa fa-user-plus"></i> Register</a>
+      </div>
+      <div id="user-dropdown" class="user-dropdown" style="display: none;">
+        <i class="fa fa-user"></i>
+        <span class="username" id="header-username"></span>
+        <div class="dropdown-content">
+          <a href="#" id="logout-link"><i class="fa fa-sign-out-alt"></i> Logout</a>
+        </div>
+      </div>
+
+      <div class="cart-icon" id="cart-icon">
+        <i class="fa fa-shopping-cart"></i>
+        <span id="cart-count">0</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ---------------- CATEGORY BUTTONS ---------------- -->
+  <div class="category-section">
+    <button class="category-btn" data-category="all">All</button>
+    <button class="category-btn" data-category="skin">Skin Care</button>
+    <button class="category-btn" data-category="hair">Hair Care</button>
+    <button class="category-btn" data-category="inner">Inner Care</button>
+  </div>
+
+  <!-- ---------------- PRODUCTS GRID ---------------- -->
+  <div class="products-section">
+    <div class="product-grid" id="product-grid">
+      <!-- Product cards inserted by JS -->
+    </div>
+  </div>
+
+  <!-- ---------------- CART MODAL ---------------- -->
+  <div id="cart-modal" class="cart-modal">
+    <div class="cart-content">
+      <span id="close-cart">&times;</span>
+      <h2><i class="fa fa-shopping-cart"></i> Your Cart</h2>
+      <div id="cart-items"></div>
+      <p>Total: ₹<span id="cart-total">0</span></p>
+      <button id="checkout-btn"><i class="fa fa-credit-card"></i> Checkout</button>
+    </div>
+  </div>
+
+  <!-- Shared footer (loaded from Ayurlogy Front-Back footer.html) -->
+  <div id="footer"></div>
+
+  <!-- Load header and footer from Ayurlogy Front-Back (absolute paths for /ayush-shop) -->
+  <script>
+    (function() {
+      fetch("/frontend/header.html")
+        .then(function(r) { return r.text(); })
+        .then(function(html) {
+          var el = document.getElementById("header");
+          if (el) el.innerHTML = html;
+        });
+      fetch("/frontend/footer.html")
+        .then(function(r) { return r.text(); })
+        .then(function(html) {
+          var el = document.getElementById("footer");
+          if (el) el.innerHTML = html;
+        });
+    })();
+  </script>
+
+  <!-- ---------------- DASHBOARD: show user if logged in, else Login/Register ---------------- -->
+  <script>
+    (function() {
+      var authLinks = document.getElementById("auth-links");
+      var userDropdown = document.getElementById("user-dropdown");
+      var headerUsername = document.getElementById("header-username");
+      var logoutLink = document.getElementById("logout-link");
+
+      function showLoggedIn(username) {
+        if (authLinks) authLinks.style.display = "none";
+        if (userDropdown) {
+          userDropdown.style.display = "flex";
+          if (headerUsername) headerUsername.textContent = "Hello, " + (username || "User");
+        }
+      }
+
+      function showLoggedOut() {
+        if (authLinks) authLinks.style.display = "flex";
+        if (userDropdown) userDropdown.style.display = "none";
+      }
+
+      fetch("/api/check-auth", { credentials: "same-origin" })
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (data.ok && data.username) {
+            showLoggedIn(data.username);
+          } else {
+            showLoggedOut();
+          }
+        })
+        .catch(function() { showLoggedOut(); });
+
+      if (logoutLink) {
+        logoutLink.addEventListener("click", function(e) {
+          e.preventDefault();
+          fetch("/api/logout", { method: "POST", credentials: "same-origin" })
+            .then(function() {
+              window.location.href = "/ayush-shop";
+            });
+        });
+      }
+    })();
+  </script>
+
+  <!-- ---------------- SCRIPT ---------------- -->
+  <script>
+    let productsData = [];
+    let cart = [];
+
+    const productGrid = document.getElementById("product-grid");
+    const cartCount = document.getElementById("cart-count");
+    const cartItems = document.getElementById("cart-items");
+    const cartTotal = document.getElementById("cart-total");
+    const cartModal = document.getElementById("cart-modal");
+
+    // ---------------- LOAD PRODUCTS ----------------
+    fetch("/api/products")
+      .then(res => res.json())
+      .then(data => {
+        productsData = data.products || data;
+        displayProducts(productsData);
+      });
+
+    // ---------------- DISPLAY PRODUCTS ----------------
+    function displayProducts(products) {
+      productGrid.innerHTML = "";
+      products.forEach(product => {
+        const card = document.createElement("div");
+        card.classList.add("product-card");
+
+        card.innerHTML = `
+          <img src="/ayush-shop/images/${product.img}" alt="${product.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%23e0e0e0%22 width=%22100%22 height=%22100%22/%3E%3Ctext fill=%22%23999%22 x=%2250%22 y=%2255%22 text-anchor=%22middle%22 font-size=%2212%22%3ENo image%3C/text%3E%3C/svg%3E'">
+          <h3>${product.name}</h3>
+          <p>${product.description}</p>
+          <p>Price: ₹${product.price}</p>
+          <button class="buy-now" onclick="window.open('${product.buyLink}','_blank')">
+            <i class="fa fa-external-link-alt"></i> Buy Now
+          </button>
+          <button class="add-cart" data-id="${product.id}" data-price="${product.price}" data-name="${product.name}">
+            <i class="fa fa-cart-plus"></i> Add to Cart
+          </button>
+        `;
+        productGrid.appendChild(card);
+      });
+    }
+
+    // ---------------- CATEGORY FILTER ----------------
+    document.querySelectorAll(".category-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const category = btn.dataset.category;
+        if(category === "all") displayProducts(productsData);
+        else {
+          const filtered = productsData.filter(p => p.category === category);
+          displayProducts(filtered);
+        }
+      });
+    });
+
+    // ---------------- CART FUNCTIONALITY ----------------
+    function updateCartDisplay() {
+      cartItems.innerHTML = "";
+      let total = 0;
+      cart.forEach((item, index) => {
+        total += item.price;
+        const div = document.createElement("div");
+        div.innerHTML = `<i class="fa fa-check-circle"></i> ${item.name} - ₹${item.price} <i class="fa fa-trash remove-item" data-index="${index}"></i>`;
+        cartItems.appendChild(div);
+      });
+      cartTotal.textContent = total;
+      cartCount.textContent = cart.length;
+    }
+
+    // Add to cart / remove
+    document.addEventListener("click", e => {
+      if(e.target.closest(".add-cart")) {
+        const btn = e.target.closest(".add-cart");
+        const id = btn.dataset.id;
+        const name = btn.dataset.name;
+        const price = parseFloat(btn.dataset.price);
+        cart.push({id, name, price});
+        updateCartDisplay();
+        cartModal.style.display = "block";
+      }
+
+      if(e.target.classList.contains("remove-item")) {
+        const idx = e.target.dataset.index;
+        cart.splice(idx,1);
+        updateCartDisplay();
+      }
+    });
+
+    // ---------------- CART MODAL TOGGLE ----------------
+    document.getElementById("cart-icon").addEventListener("click", () => {
+      cartModal.style.display = "block";
+    });
+
+    document.getElementById("close-cart").addEventListener("click", () => {
+      cartModal.style.display = "none";
+    });
+
+    window.onclick = function(event) {
+      if (event.target == cartModal) cartModal.style.display = "none";
+    }
+  </script>
+
+</body>
+</html>

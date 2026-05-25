@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Build Your Personality | Ayurlogy</title>
+ <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<link rel="stylesheet" href="info.css">
+  <link rel="stylesheet" href="ex_ayurveda.css">
+  <style>
+    .dosha-select-section { margin-top: 2rem; }
+    .dosha-form { margin-top: 1rem; }
+    .dosha-options { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+    .dosha-option {
+      display: flex; flex-direction: column; align-items: center; padding: 1.2rem 1.5rem;
+      background: #eef4ea; border: 2px solid #6b8f71; border-radius: 14px;
+      cursor: pointer; min-width: 160px; transition: background 0.2s, border-color 0.2s;
+    }
+    .dosha-option:hover { background: #dfeadf; border-color: #5f7f66; }
+    .dosha-option input { margin-bottom: 0.5rem; accent-color: #6b8f71; }
+    .dosha-label { font-weight: 600; color: #2f5d3a; font-size: 1.1rem; }
+    .dosha-desc { font-size: 0.85rem; color: #4a5568; margin-top: 0.3rem; text-align: center; }
+  </style>
+</head>
+<body>
+
+<div id="header"></div>
+
+<div class="page-wrapper">
+
+  <section class="page-hero">
+    <h1>Build Your Personality</h1>
+    <p>
+      Ayurveda does not just describe who you are — it guides you on how to consciously
+      shape your character, habits, and inner strength.
+    </p>
+  </section>
+
+  <section class="container soft-bg">
+
+    <p class="intro-text">
+      Your personality is influenced by daily routines, thoughts, food, sleep, and behavior.
+      By cultivating Sattva and managing Rajas and Tamas, Ayurveda helps you develop
+      discipline, emotional stability, confidence, and clarity.
+    </p>
+
+    <div class="card-grid">
+      <div class="info-card">
+        <h3>Daily Discipline (Dinacharya)</h3>
+        <p>
+          Following a consistent daily routine brings mental stability, improves focus,
+          and strengthens willpower.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h3>Food & Mind Connection</h3>
+        <p>
+          The type of food you eat directly affects your thoughts, emotions, and behavior.
+          Sattvic foods promote clarity and calmness.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h3>Thought Awareness</h3>
+        <p>
+          Observing your thoughts without judgment helps reduce impulsive reactions
+          and builds emotional intelligence.
+        </p>
+      </div>
+    </div>
+
+    <div class="dosha-card">
+      <h2>Ayurvedic Habits for Personality Growth</h2>
+      <ul>
+        <li>Wake up early and start the day calmly</li>
+        <li>Practice self-reflection and journaling</li>
+        <li>Limit overstimulation from screens and noise</li>
+        <li>Develop gratitude and mindful awareness</li>
+      </ul>
+    </div>
+
+    <!-- Dosha selection (user input – stored for database / result page) -->
+    <div class="dosha-card dosha-select-section">
+      <h2>What's your dominant dosha?</h2>
+      <p class="intro-text" style="margin-bottom: 1.5rem;">
+        Select your primary dosha so we can personalize your personality-building journey.
+      </p>
+      <form id="dosha-form" class="dosha-form">
+        <div class="dosha-options">
+          <label class="dosha-option">
+            <input type="radio" name="dosha" value="vata" required>
+            <span class="dosha-label">Vata</span>
+            <span class="dosha-desc">Air + Space — creative, quick, light</span>
+          </label>
+          <label class="dosha-option">
+            <input type="radio" name="dosha" value="pitta">
+            <span class="dosha-label">Pitta</span>
+            <span class="dosha-desc">Fire + Water — sharp, focused, driven</span>
+          </label>
+          <label class="dosha-option">
+            <input type="radio" name="dosha" value="kapha">
+            <span class="dosha-label">Kapha</span>
+            <span class="dosha-desc">Earth + Water — steady, calm, nurturing</span>
+          </label>
+        </div>
+      </form>
+    </div>
+
+    <div class="container final-note" style="text-align: center; padding-top: 1rem;">
+      <button type="button" id="continue-btn" class="btnsecondary">
+        Forward
+      </button>
+    </div>
+
+  </section>
+
+</div>
+
+<div id="footer"></div>
+<script src="info.js"></script>
+<script>
+  (function() {
+    var form = document.getElementById("dosha-form");
+    var btn = document.getElementById("continue-btn");
+    if (!form || !btn) return;
+
+    btn.addEventListener("click", function() {
+      var selected = document.querySelector('input[name="dosha"]:checked');
+      if (!selected) {
+        alert("Please select your dominant dosha first.");
+        return;
+      }
+      var dosha = selected.value;
+      try {
+        localStorage.setItem("userDosha", dosha);
+      } catch (e) {}
+      window.location.href = "personality-result.html";
+    });
+  })();
+</script>
+</body>
+</html>

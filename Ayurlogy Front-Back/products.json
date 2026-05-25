@@ -1,0 +1,58 @@
+{
+    "products": [
+      {
+        "id": 1,
+        "name": "Aloe Vera Gel",
+        "description": "Cooling gel suitable for Pitta skin.",
+        "price": 199,
+        "category": "skin",
+        "dosha": ["pitta"],
+        "buyLink": "#"
+      },
+      {
+        "id": 2,
+        "name": "Ashwagandha Cream",
+        "description": "Deep nourishing cream for Vata dryness.",
+        "price": 399,
+        "category": "skin",
+        "dosha": ["vata"],
+        "buyLink": "#"
+      },
+      {
+        "id": 3,
+        "name": "Bhringraj Hair Oil",
+        "description": "Strengthens hair and balances Vata.",
+        "price": 299,
+        "category": "hair",
+        "dosha": ["vata"],
+        "buyLink": "#"
+      },
+      {
+        "id": 4,
+        "name": "Neem Hair Oil",
+        "description": "Controls dandruff for Kapha & Pitta.",
+        "price": 249,
+        "category": "hair",
+        "dosha": ["kapha","pitta"],
+        "buyLink": "#"
+      },
+      {
+        "id": 5,
+        "name": "Triphala Powder",
+        "description": "Supports digestion and detox.",
+        "price": 199,
+        "category": "inner",
+        "dosha": ["vata","kapha"],
+        "buyLink": "#"
+      },
+      {
+        "id": 6,
+        "name": "Ashwagandha Capsules",
+        "description": "Boosts energy and immunity.",
+        "price": 499,
+        "category": "inner",
+        "dosha": ["vata"],
+        "buyLink": "#"
+      }
+    ]
+  }

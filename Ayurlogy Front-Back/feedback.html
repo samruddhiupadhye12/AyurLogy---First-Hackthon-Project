@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback | Ayurlogy</title>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="info.css">
+  <link rel="stylesheet" href="feedback.css">
+  <link rel="stylesheet" href="toast.css">
+</head>
+<body>
+
+<div id="header"></div>
+
+<main class="feedback-page">
+  <div class="feedback-container">
+    <h2>🌿 Feedback Form</h2>
+
+    <form id="feedbackForm">
+      <label>Your Rating</label>
+      <div class="star-rating">
+        <input type="radio" id="star5" name="rating" value="5">
+        <label for="star5">★</label>
+        <input type="radio" id="star4" name="rating" value="4">
+        <label for="star4">★</label>
+        <input type="radio" id="star3" name="rating" value="3">
+        <label for="star3">★</label>
+        <input type="radio" id="star2" name="rating" value="2">
+        <label for="star2">★</label>
+        <input type="radio" id="star1" name="rating" value="1">
+        <label for="star1">★</label>
+      </div>
+
+      <label>Feedback</label>
+      <textarea name="message" id="feedbackMessage" placeholder="Write your feedback..." required></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</main>
+
+<div id="footer"></div>
+
+<script src="info.js"></script>
+<script src="toast.js"></script>
+<script>
+  document.getElementById("feedbackForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    var rating = document.querySelector('input[name="rating"]:checked');
+    var message = document.getElementById("feedbackMessage").value.trim();
+    if (!rating) {
+      toastWarning("Please select a rating.");
+      return;
+    }
+    if (!message) {
+      toastWarning("Please write your feedback.");
+      return;
+    }
+    try {
+      var res = await fetch("/api/feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ rating: rating.value, message: message })
+      });
+      var data = await res.json();
+      if (data && data.ok) {
+        toastSuccess("Thank you for your feedback! 🌿");
+        document.getElementById("feedbackForm").reset();
+      } else {
+        toastError(data.error || "Something went wrong. Please try again.");
+      }
+    } catch (err) {
+      toastError("Could not submit. Make sure the app is running.");
+    }
+  });
+</script>
+</body>
+</html>

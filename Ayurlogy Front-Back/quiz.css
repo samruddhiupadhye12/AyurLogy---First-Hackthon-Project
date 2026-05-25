@@ -1,0 +1,197 @@
+:root {
+  --green: #3f6b4f;
+  --light-green: #eaf4ec;
+  --gold: #c49a3a;
+  --bg: #f8f6f1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* HERO SECTION */
+.hero {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 3rem;
+  padding: 4rem 8%;
+  align-items: center;
+  background: linear-gradient(to right, #f5f3eb, #eef6f0);
+}
+
+.hero h1 {
+  font-size: 2.6rem;
+  color: var(--green);
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.05rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.hero button {
+  padding: 12px 26px;
+  border-radius: 25px;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+  margin-right: 12px;
+}
+
+.btn-primary {
+  background: var(--green);
+  color: white;
+}
+
+.btn-secondary {
+  background: var(--gold);
+  color: white;
+}
+
+.hero img {
+  width: 100%;
+  max-width: 500px;
+  justify-self: center;
+  transition: transform 0.4s ease;
+}
+
+.hero img:hover {
+  transform: scale(1.18);
+}
+
+/* QUIZ SECTION */
+.quiz-section {
+  padding: 4rem 8%;
+  display: none;
+}
+
+.quiz-container {
+  max-width: 700px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.quiz-container h2 {
+  color: var(--green);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.question {
+  font-size: 18px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.options label {
+  display: block;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  border: 2px solid #ddd;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.options input {
+  display: none;
+}
+
+.options input:checked + span {
+  background: var(--light-green);
+  color: var(--green);
+  font-weight: 600;
+}
+
+.options span {
+  display: block;
+}
+
+.quiz-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+.quiz-actions button {
+  padding: 10px 22px;
+  border-radius: 20px;
+  border: none;
+  background: var(--green);
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.result-box {
+  text-align: center;
+  display: none;
+}
+
+.result-box h2 {
+  color: var(--green);
+  margin-bottom: 10px;
+}
+
+.result-box p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.result-card {
+  background: var(--light-green);
+  padding: 25px;
+  border-radius: 14px;
+  margin-top: 20px;
+}
+
+.result-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.result-actions button {
+  padding: 10px 22px;
+  border-radius: 20px;
+  border: none;
+  background: var(--green);
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-feedback {
+  display: inline-block;
+  padding: 10px 22px;
+  border-radius: 20px;
+  background: var(--gold);
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn-feedback:hover {
+  opacity: 0.9;
+  color: white;
+}
+
+@media (max-width: 800px) {
+  .hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero img {
+    margin: 2rem auto 0;
+  }
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ayurlogy</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+<!-- Styles -->
+<link rel="stylesheet" href="info.css">
+<link rel="stylesheet" href="home.css">
+
+</head>
+<body>
+
+<div id="header"></div>
+
+<!-- HERO -->
+<section class="hero animate">
+  <div class="hero-left">
+    <h1>Heal Naturally with AI Powered Ayurveda</h1>
+    <p>Ancient Wisdom, Modern Solutions for Your Health.</p>
+    <button class="explore" onclick="location.href='/explore-ayurveda'">Explore Ayurveda</button>
+    <button class="start" onclick="location.href='/auth.html'">Get Started</button>
+  </div>
+  <div class="hero-right">
+    <img src="girl.png" alt="Ayurveda Girl Illustration">
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about animate">
+  <div class="about-box">
+    <h2>🪴 What is Ayurlogy?</h2>
+    <div class="about-container">
+      <p>Ayurlogy blends ancient Ayurveda with modern AI technology to deliver natural healthcare solutions.</p>
+      <ul>
+        <li>✔ Personalized Health Insights</li>
+        <li>✔ Natural Remedies & Herbs</li>
+        <li>✔ AI Powered Recommendations</li>
+        <li>✔ Lifestyle Guidance</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features-section">
+  <div class="features-container">
+    <div class="left-img animate">
+      <img src="ayu.png" alt="Ayurveda Illustration">
+    </div>
+    <div class="right-cards">
+      <div class="card animate">
+        <div class="emoji-circle">🌿</div>
+        <h3>Pure Ayurveda</h3>
+        <p>Ancient Science Modern Validation</p>
+      </div>
+      <div class="card animate">
+        <div class="emoji-circle">🧠</div>
+        <h3>AI Powered</h3>
+        <p>Smart & Personalized Analysis</p>
+      </div>
+      <div class="card animate">
+        <div class="emoji-circle">🍃</div>
+        <h3>Dosha Based Care</h3>
+        <p>Tailored to Your Body Type</p>
+      </div>
+      <div class="card animate">
+        <div class="emoji-circle">🧘</div>
+        <h3>Holistic Wellness</h3>
+        <p>Mind Body Balance</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="footer"></div>
+
+<!-- JS: Common header/footer -->
+<script src="info.js"></script>
+
+<!-- JS: Scroll animations + zoom disable -->
+<script>
+  // Disable zoom
+  document.addEventListener('wheel', function(e){
+    if(e.ctrlKey){ e.preventDefault(); }
+  }, {passive:false});
+  document.addEventListener('keydown', function(e){
+    if((e.ctrlKey||e.metaKey)&&(e.key==='+'||e.key==='-'||e.key==='=')){
+      e.preventDefault();
+    }
+  });
+
+  // Scroll AOS-style animation
+  const elements = document.querySelectorAll('.animate');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('show');
+        observer.unobserve(entry.target); // animate once
+      }
+    });
+  }, {threshold:0.2});
+  elements.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
+

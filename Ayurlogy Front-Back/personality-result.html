@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Dosha Profile | Ayurlogy</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="info.css">
+  <link rel="stylesheet" href="ex_ayurveda.css">
+  <style>
+    .routine-table { width: 100%; border-collapse: collapse; margin: 1rem 0; background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.05); }
+    .routine-table th, .routine-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid #eef4ea; }
+    .routine-table th { background: #6b8f71; color: #fff; font-weight: 600; }
+    .routine-table tr:last-child td { border-bottom: none; }
+    .routine-table tr:hover td { background: #f6faf6; }
+    .routine-table td ul { margin: 0.5rem 0 0 0; padding-left: 1.2rem; }
+    .routine-table td ul li { margin-bottom: 0.25rem; }
+    .routine-table .phase-name { font-weight: 600; color: #2f5d3a; }
+    .routine-table .benefits { font-size: 0.9rem; color: #5a6c5a; margin-top: 0.5rem; }
+    .dosha-routine { display: none; }
+    .dosha-routine.active { display: block; }
+    #toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px); background: #2d3748; color: #fff; padding: 14px 24px; border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); z-index: 9999; opacity: 0; transition: transform 0.3s, opacity 0.3s; max-width: 90%; }
+    #toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+  </style>
+</head>
+<body>
+
+<div id="header"></div>
+
+<div class="page-wrapper">
+
+  <section class="page-hero">
+    <h1>Your Dosha Profile</h1>
+    <p>
+      Your dominant dosha shapes your personality and habits. Use this as a starting point
+      to build balance and strength.
+    </p>
+  </section>
+
+  <section class="container soft-bg">
+
+    <div class="dosha-card" id="dosha-result-card">
+      <h2 id="dosha-title">Your dominant dosha</h2>
+      <p class="intro-text" id="dosha-intro"></p>
+      <div class="tip" id="dosha-tip"></div>
+    </div>
+
+    <h2 style="margin-top: 2rem; margin-bottom: 1rem;">🕊️ Your Daily Routine</h2>
+    <p class="intro-text" style="margin-bottom: 1.5rem;">Follow this routine for your dosha. The table below shows phases, time, focus, and activities.</p>
+
+    <!-- Daily routine: Vata (Grounding · Calm · Stability) -->
+    <div id="routine-vata" class="dosha-routine">
+      <h3 style="margin-bottom: 1rem;">🕊️ DAILY ROUTINE – VATA DOSHA <span style="font-weight: normal; font-size: 0.95rem;">(Grounding · Calm · Stability)</span></h3>
+      <table class="routine-table">
+        <thead><tr><th>Phase</th><th>Time</th><th>Focus</th><th>Activities</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="phase-name">🌅 Morning</td>
+            <td>6:00 – 9:00 AM</td>
+            <td>Calm mind + digestion activation</td>
+            <td>
+              <ul>
+                <li>Wake up same time daily (very important for Vata)</li>
+                <li>Warm water (optional ginger infusion)</li>
+                <li>Gentle stretching / slow yoga (10–15 min)</li>
+                <li>Breathing: deep nasal breathing or box breathing (5 min)</li>
+                <li>Light self-reflection or journaling (mental grounding)</li>
+              </ul>
+              <div class="benefits">🧠 Mental health: reduces anxiety, restlessness · 🔥 Digestion: warms digestive fire gently</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="phase-name">💼 Daytime</td>
+            <td>9:00 AM – 1:00 PM</td>
+            <td>Steady productivity</td>
+            <td>
+              <ul>
+                <li>Work/study in 90-minute focused blocks</li>
+                <li>Avoid multitasking</li>
+                <li>Mid-morning snack if needed (warm, simple food)</li>
+                <li>Lunch by 12:30 PM (largest meal)</li>
+              </ul>
+              <div class="benefits">🧠 Prevents overwhelm · 🔥 Strongest digestion window</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="phase-name">🌤️ Afternoon</td>
+            <td>1:00 – 6:00 PM</td>
+            <td>Prevent fatigue</td>
+            <td>
+              <ul>
+                <li>Short walk after lunch</li>
+                <li>Light work only</li>
+                <li>Avoid excess caffeine</li>
+                <li>5-minute grounding pause (feet on floor, deep breathing)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td class="phase-name">🌙 Evening</td>
+            <td>6:00 – 10:00 PM</td>
+            <td>Wind down nervous system</td>
+            <td>
+              <ul>
+                <li>Early, light dinner (before 7:30 PM)</li>
+                <li>Digital detox after 9 PM</li>
+                <li>Warm shower</li>
+                <li>Gratitude or calming music</li>
+                <li>Sleep by 10 PM</li>
+              </ul>
+              <div class="benefits">🧠 Improves sleep quality · 🔥 Prevents bloating & gas</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Daily routine: Pitta (Balance · Cooling · Emotional ease) -->
+    <div id="routine-pitta" class="dosha-routine">
+      <h3 style="margin-bottom: 1rem;">🔥 DAILY ROUTINE – PITTA DOSHA <span style="font-weight: normal; font-size: 0.95rem;">(Balance · Cooling · Emotional ease)</span></h3>
+      <table class="routine-table">
+        <thead><tr><th>Phase</th><th>Time</th><th>Focus</th><th>Activities</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="phase-name">🌅 Morning</td>
+            <td>5:30 – 8:30 AM</td>
+            <td>Calm intensity</td>
+            <td>
+              <ul>
+                <li>Wake up without rushing</li>
+                <li>Room-temperature water</li>
+                <li>Cooling stretches / yoga (no competition mindset)</li>
+                <li>Breathing: slow exhale-focused breathing</li>
+                <li>Short mindfulness or intention setting</li>
+              </ul>
+              <div class="benefits">🧠 Reduces irritability · 🔥 Avoids overheating digestion</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="phase-name">💼 Daytime</td>
+            <td>9:00 AM – 1:00 PM</td>
+            <td>Productive but not obsessive</td>
+            <td>
+              <ul>
+                <li>Deep work in structured blocks</li>
+                <li>Short breaks every hour</li>
+                <li>Lunch at peak hunger (12–1 PM)</li>
+              </ul>
+              <div class="benefits">🧠 Prevents burnout · 🔥 Supports strong digestion without acidity</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="phase-name">🌤️ Afternoon</td>
+            <td>1:00 – 6:00 PM</td>
+            <td>Emotional regulation</td>
+            <td>
+              <ul>
+                <li>Avoid skipping meals</li>
+                <li>Walk in nature if possible</li>
+                <li>Cooling beverages (not iced)</li>
+                <li>Step away from conflict/stress if noticed</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td class="phase-name">🌙 Evening</td>
+            <td>6:30 – 10:30 PM</td>
+            <td>Release control</td>
+            <td>
+              <ul>
+                <li>Light dinner</li>
+                <li>Reflection without self-criticism</li>
+                <li>Screen brightness low</li>
+                <li>Gentle reading or music</li>
+                <li>Sleep by 10:30 PM</li>
+              </ul>
+              <div class="benefits">🧠 Calms anger/frustration · 🔥 Prevents heartburn & acid reflux</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Daily routine: Kapha (Activation · Motivation · Lightness) -->
+    <div id="routine-kapha" class="dosha-routine">
+      <h3 style="margin-bottom: 1rem;">🌱 DAILY ROUTINE – KAPHA DOSHA <span style="font-weight: normal; font-size: 0.95rem;">(Activation · Motivation · Lightness)</span></h3>
+      <table class="routine-table">
+        <thead><tr><th>Phase</th><th>Time</th><th>Focus</th><th>Activities</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="phase-name">🌅 Morning</td>
+            <td>5:00 – 7:30 AM</td>
+            <td>Energy & momentum</td>
+            <td>
+              <ul>
+                <li>Wake up early (before heaviness sets in)</li>
+                <li>Warm water</li>
+                <li>Dynamic movement (walk, yoga, light cardio)</li>
+                <li>Motivational reading or affirmations</li>
+              </ul>
+              <div class="benefits">🧠 Reduces dullness, low mood · 🔥 Kickstarts slow digestion</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="phase-name">💼 Daytime</td>
+            <td>9:00 AM – 1:00 PM</td>
+            <td>Stay engaged</td>
+            <td>
+              <ul>
+                <li>Active work environment</li>
+                <li>Avoid snacking unless truly hungry</li>
+                <li>Light but nourishing lunch</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td class="phase-name">🌤️ Afternoon</td>
+            <td>1:00 – 6:00 PM</td>
+            <td>Prevent lethargy</td>
+            <td>
+              <ul>
+                <li>Stand/walk every hour</li>
+                <li>Avoid naps</li>
+                <li>Engage socially or creatively</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td class="phase-name">🌙 Evening</td>
+            <td>6:00 – 10:00 PM</td>
+            <td>Lightness + clarity</td>
+            <td>
+              <ul>
+                <li>Very light dinner (or soup)</li>
+                <li>Short walk</li>
+                <li>Reflection on progress</li>
+                <li>Sleep by 10 PM</li>
+              </ul>
+              <div class="benefits">🧠 Lifts emotional heaviness · 🔥 Prevents sluggish metabolism</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="container final-note" style="text-align: center; padding-top: 2rem;">
+      <!-- <button type="button" id="start-now-btn" class="btnsecondary">Start from now</button> -->
+    </div>
+    <div class="container final-note" style="text-align: center; padding-top: 1rem;">
+      <a href="build-your-personality.html" class="btnsecondary" style="display: inline-block; text-decoration: none; color: white;">Back to Build Your Personality</a>
+    </div>
+
+  </section>
+
+</div>
+
+<div id="footer"></div>
+
+<!-- Toast: shown when user not logged in -->
+<div id="toast" role="alert"></div>
+
+<script src="info.js"></script>
+<script>
+  (function() {
+    var doshaData = {
+      vata: {
+        title: "Vata — Air + Space",
+        intro: "You tend to be creative, quick-thinking, and light. Your mind moves fast; grounding habits and warm, nourishing routines help you stay balanced.",
+        tip: "Tip: Wake up calmly, eat warm meals at regular times, and include gentle movement like walking or yoga."
+      },
+      pitta: {
+        title: "Pitta — Fire + Water",
+        intro: "You are sharp, focused, and driven. Cooling practices and moderation in intensity support your personality and prevent burnout.",
+        tip: "Tip: Favor cooling foods, avoid excess spice, and include calming practices and time in nature."
+      },
+      kapha: {
+        title: "Kapha — Earth + Water",
+        intro: "You are steady, calm, and nurturing. Staying active and choosing light, warm foods helps maintain energy and clarity.",
+        tip: "Tip: Stay active daily, eat light and warm foods, and avoid excess sweets and heavy meals."
+      }
+    };
+
+    var stored = (typeof localStorage !== "undefined" && localStorage.getItem("userDosha")) || "";
+    var dosha = stored.toLowerCase();
+    if (!doshaData[dosha]) dosha = "vata";
+
+    var card = document.getElementById("dosha-result-card");
+    var titleEl = document.getElementById("dosha-title");
+    var introEl = document.getElementById("dosha-intro");
+    var tipEl = document.getElementById("dosha-tip");
+    if (titleEl) titleEl.textContent = doshaData[dosha].title;
+    if (introEl) introEl.textContent = doshaData[dosha].intro;
+    if (tipEl) tipEl.textContent = doshaData[dosha].tip;
+
+    // Show the daily routine table for selected dosha
+    var routineVata = document.getElementById("routine-vata");
+    var routinePitta = document.getElementById("routine-pitta");
+    var routineKapha = document.getElementById("routine-kapha");
+    if (routineVata) routineVata.classList.toggle("active", dosha === "vata");
+    if (routinePitta) routinePitta.classList.toggle("active", dosha === "pitta");
+    if (routineKapha) routineKapha.classList.toggle("active", dosha === "kapha");
+
+    // Toast helper
+    function showToast(msg) {
+      var el = document.getElementById("toast");
+      if (!el) return;
+      el.textContent = msg;
+      el.classList.add("show");
+      setTimeout(function() { el.classList.remove("show"); }, 4000);
+    }
+
+    // Start from now: check auth, then call backend
+    /*var startBtn = document.getElementById("start-now-btn");
+    if (startBtn) {
+      startBtn.addEventListener("click", function() {
+        fetch("/api/check-auth", { credentials: "same-origin" })
+          .then(function(r) { return r.json(); })
+          .then(function(auth) {
+            if (!auth.ok) {
+              showToast("Account not created. First create account.");
+              return;
+            }
+            startBtn.disabled = true;
+            startBtn.textContent = "Starting...";
+            return fetch("/api/start-dosha-reminders", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              credentials: "same-origin",
+              body: JSON.stringify({ dosha: dosha })
+            });
+          })
+          .then(function(res) {
+            if (!res) return;
+            return res.json();
+          })
+          .then(function(data) {
+            if (!data) return;
+            startBtn.disabled = false;
+            startBtn.textContent = "Start from now";
+            if (data.ok) {
+              showToast(data.message || "Reminders started. You will receive email notifications.");
+            } else {
+              showToast(data.error || "Something went wrong.");
+            }
+          })
+          .catch(function() {
+            startBtn.disabled = false;
+            startBtn.textContent = "Start from now";
+            showToast("Something went wrong. Try again.");
+          });
+      });
+    }*/
+  })();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AyurLogy Shop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="products.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="info.css">
+    <link rel="stylesheet" href="toast.css">
+</head>
+<body>
+
+<div id="header"></div>
+<header>
+    <input type="text" id="searchInput" placeholder="Search products...">
+    <div class="cart-box">
+        🛒(<span id="cart-count">0</span>)
+    </div>
+</header>
+<!-- CATEGORY SECTION -->
+<section class="category-section">
+    <div class="category-buttons">
+        <button onclick="filterCategory('all')">
+            <i class="fa-solid fa-layer-group"></i> All
+        </button>
+        <button onclick="filterCategory('skin')">
+            <i class="fa-solid fa-spa"></i> Skin
+        </button>
+        <button onclick="filterCategory('hair')">
+            <i class="fa-solid fa-seedling"></i> Hair
+        </button>
+        <button onclick="filterCategory('inner')">
+            <i class="fa-solid fa-heart"></i> Inner
+        </button>
+    </div>
+</section>
+
+<!-- DOSHA SECTION -->
+<section class="dosha-section">
+    <h2>Balance Your Dosha</h2>
+    <div class="dosha-buttons">
+        <button onclick="filterDosha('vata')" class="vata">
+            <i class="fa-solid fa-wind"></i> Vata
+        </button>
+        <button onclick="filterDosha('pitta')" class="pitta">
+            <i class="fa-solid fa-fire"></i> Pitta
+        </button>
+        <button onclick="filterDosha('kapha')" class="kapha">
+            <i class="fa-solid fa-droplet"></i> Kapha
+        </button>
+    </div>
+</section>
+
+<div class="section-title">
+    <h2 id="section-title">All Products</h2>
+</div>
+
+<div id="products-container" class="products"></div>
+
+<div id="footer"></div>
+<script src="info.js"></script>
+<script src="toast.js"></script>
+<script>
+let allProducts = [];
+
+fetch("/api/products")
+.then(res => res.json())
+.then(data => {
+    allProducts = data.products || [];
+    displayProducts(allProducts);
+    updateCartCount();
+})
+.catch(err => {
+    document.getElementById("products-container").innerHTML = "<h3>Could not load products.</h3>";
+});
+
+function displayProducts(products){
+    let container = document.getElementById("products-container");
+    container.innerHTML = "";
+    if(products.length === 0){
+        container.innerHTML = "<h3>No products found</h3>";
+        return;
+    }
+    products.forEach(p => {
+        container.innerHTML += `
+            <div class="card">
+                <h3>${p.name}</h3>
+                <p>${p.description}</p>
+                <p class="price">₹${p.price}</p>
+                <div class="buttons">
+                    <button class="cart-btn" onclick="addToCart(${p.id})">🛒 Add to Cart</button>
+                    <a href="${p.buyLink || '#'}" target="_blank">
+                        <button class="buy-btn">Buy Now</button>
+                    </a>
+                </div>
+            </div>
+        `;
+    });
+}
+
+function filterCategory(category){
+    if(category === "all"){
+        displayProducts(allProducts);
+        return;
+    }
+    let filtered = allProducts.filter(p => p.category === category);
+    displayProducts(filtered);
+}
+
+function filterDosha(dosha){
+    let filtered = allProducts.filter(p => p.dosha && p.dosha.includes(dosha));
+    displayProducts(filtered);
+}
+
+const searchInput = document.getElementById("searchInput");
+if (searchInput) {
+    searchInput.addEventListener("input", function(){
+        let value = this.value.toLowerCase();
+        let filtered = allProducts.filter(p => 
+            p.name.toLowerCase().includes(value)
+        );
+        displayProducts(filtered);
+    });
+}
+
+function addToCart(id){
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push(id);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCount();
+    toastSuccess("Added to cart 🌿");
+}
+
+function updateCartCount(){
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartCount = document.getElementById("cart-count");
+    if (cartCount) cartCount.innerText = cart.length;
+}
+</script>
+</body>
+</html>

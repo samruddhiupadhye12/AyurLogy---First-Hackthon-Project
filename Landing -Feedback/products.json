@@ -1,0 +1,104 @@
+[
+    {
+      "id": 1,
+      "name": "Aloe Vera Gel",
+      "description": "Cooling gel suitable for Pitta skin.",
+      "price": 199,
+      "category": "skin",
+      "dosha": ["pitta"],
+      "img": "aloeveragel.jpg",
+      "buyLink": "https://www.amazon.in/s?k=aloe+vera+gel"
+    },
+    {
+      "id": 2,
+      "name": "Ashwagandha Cream",
+      "description": "Deep nourishing cream for Vata dryness.",
+      "price": 399,
+      "category": "skin",
+      "dosha": ["vata"],
+      "img": "ashwagandhacream.jpg",
+      "buyLink": "https://www.amazon.in/s?k=ashwagandha+cream"
+    },
+    {
+      "id": 3,
+      "name": "Triphala Powder",
+      "description": "Supports digestion and detox.",
+      "price": 199,
+      "category": "inner",
+      "dosha": ["vata","kapha"],
+      "img": "triphalapowder.jpg",
+      "buyLink": "https://www.amazon.in/s?k=triphala+powder"
+    },
+    {
+      "id": 4,
+      "name": "Organic India Psyllium Husk Powder",
+      "description": "High‑fiber psyllium husk powder to support gut health and regular digestion.",
+      "price": 241,
+      "category": "inner",
+      "dosha": ["vata", "pitta", "kapha"],
+      "img": "isabgolhuskpowder.jpg",
+      "buyLink": "https://www.amazon.in/dp/B00JI4WCGO"
+    },
+    {
+      "id": 5,
+      "name": "Sat Isabgol Psyllium Husk",
+      "description": "Traditional psyllium husk for gentle digestive support and regular bowel movement.",
+      "price": 688,
+      "category": "inner",
+      "dosha": ["vata", "pitta", "kapha"],
+      "img": "satisabgol.jpg",
+      "buyLink": "https://www.amazon.in/dp/B015Z7AUWU"
+    },
+    {
+      "id": 6,
+      "name": "Dabur Sat Isabgol Psyllium Husk",
+      "description": "Rich in dietary fiber; helps relieve constipation and bloating naturally.",
+      "price": 291,
+      "category": "inner",
+      "dosha": ["vata", "pitta", "kapha"],
+      "img": "dabarsatisabgol.jpg",
+      "buyLink": "https://www.amazon.in/s?k=Dabur+Sat+Isabgol"
+    },
+    
+      
+      {
+        "id": 7,
+        "name": "Bhringraj Hair Oil",
+        "description": "Strengthens hair and balances Vata.",
+        "price": 299,
+        "category": "hair",
+        "dosha": ["vata"],
+        "img": "bhringrajoil.jpg",
+        "buyLink": "https://www.amazon.in/s?k=bhringraj+hair+oil"
+      },
+      {
+        "id": 8,
+        "name": "Neem Hair Oil",
+        "description": "Controls dandruff for Kapha & Pitta.",
+        "price": 249,
+        "category": "hair",
+        "dosha": ["kapha","pitta"],
+        "img": "neemoil.jpg",
+        "buyLink": "https://www.amazon.in/s?k=neem+hair+oil"
+      },
+      {
+    "id": 9,
+    "name": "Tulasi Drops",
+    "description": "Naturally derived tulsi drops for immunity and wellness.",
+    "price": 249,
+    "category": "hair",
+    "dosha": ["kapha", "pitta"],
+    "img": "tulsidrops.jpg",
+    "buyLink": "https://www.amazon.in/DABUR-Tulsi-Drops-50-Extra-Concentrated/dp/B08KRDSCBD" 
+  },
+  {
+    "id": 10,
+    "name": "Sandalwood Powder",
+    "description": "Pure sandalwood powder ideal for skin brightening & herbal face packs.",
+    "price": 249,
+    "category": "skin",
+    "dosha": ["kapha", "pitta"],
+    "img": "sandalwoodpowder.jpg",
+    "buyLink": "https://www.amazon.in/sandalwood-powder/s?k=sandalwood+powder"
+  }
+]

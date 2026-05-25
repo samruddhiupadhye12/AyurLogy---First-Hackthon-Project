@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ayurlogy Intro</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  background:linear-gradient(-45deg,#6b8f71,#4f6f52,#3a5f5f,#2f4f4f);
+  background-size:400% 400%;
+  animation:bgMove 12s ease infinite;
+  color:white;
+}
+
+/* Container */
+.container{
+  position:relative;
+  width:100%;
+  height:100vh;
+}
+
+/* Sliding Text */
+.text{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:18px;
+  font-size:58px;
+  letter-spacing:2px;
+  position:absolute;
+  top:35%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+
+/* Words slide in */
+.ayurveda{
+  color:#caffbf;
+  transform:translateX(-400px);
+  opacity:0;
+  animation:leftSlide 1.5s forwards;
+}
+.meets{
+  transform:translateY(-200px);
+  opacity:0;
+  animation:topSlide 1.5s forwards;
+  animation-delay:.3s;
+}
+.technology{
+  color:#a0e7e5;
+  transform:translateX(400px);
+  opacity:0;
+  animation:rightSlide 1.5s forwards;
+}
+
+/* Merge & fade effect */
+.text{
+  animation:mergeText 1s forwards;
+  animation-delay:2.2s;
+}
+
+/* Logo + text - centered in viewport */
+.landing-logo{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  position:absolute;
+  top:50%;
+  left:50%;
+  font-size:90px;
+  font-weight:700;
+  opacity:0;
+  transform:translate(-50%,-50%) scale(.3);
+  animation:logoExpand .8s forwards;
+  animation-delay:3s;
+  color:#eaffea;
+  text-shadow:
+    0 0 12px rgba(202,255,191,.6),
+    0 0 24px rgba(160,231,229,.4),
+    0 0 36px rgba(255,255,255,.2);
+  z-index:10;
+}
+
+/* Netflix-style: logo flies to top-left (navbar position) */
+.landing-logo{
+  animation:logoExpand .8s forwards, logoFlyToCorner 1.2s ease-in-out forwards;
+  animation-delay:3s, 4.2s;
+}
+
+.landing-logo .logo-img{
+  height:115px;
+  width:auto;
+  transition: height 1.2s ease-in-out;
+}
+
+/* Sliding Animations */
+@keyframes leftSlide{to{transform:translateX(0);opacity:1;}}
+@keyframes rightSlide{to{transform:translateX(0);opacity:1;}}
+@keyframes topSlide{to{transform:translateY(0);opacity:1;}}
+@keyframes mergeText{to{opacity:0;transform:translate(-50%,-50%) scale(.6);}}
+
+/* Logo grow + fade - keep centered */
+@keyframes logoExpand{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(.3);}
+  60%{opacity:1;transform:translate(-50%,-50%) scale(1.35);}
+  100%{opacity:1;transform:translate(-50%,-50%) scale(1);}
+}
+
+/* Netflix-style: fly to navbar position (top-left) */
+@keyframes logoFlyToCorner{
+  0%{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(1);font-size:90px;gap:14px;}
+  100%{position:fixed;top:12px;left:40px;transform:translate(0,0) scale(0.35);font-size:25px;gap:8px;}
+}
+
+/* Glow pulse for text */
+@keyframes textPulse{
+  0%,100%{text-shadow:
+    0 0 12px rgba(202,255,191,.6),
+    0 0 24px rgba(160,231,229,.4),
+    0 0 36px rgba(255,255,255,.2);}
+  50%{text-shadow:
+    0 0 18px rgba(202,255,191,.8),
+    0 0 36px rgba(160,231,229,.6),
+    0 0 54px rgba(255,255,255,.3);}
+}
+
+/* Animated Background */
+@keyframes bgMove{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .text{
+    flex-direction:column;
+    font-size:34px;
+  }
+  .landing-logo{
+    font-size:56px;
+  }
+  .landing-logo .logo-img{
+    height:70px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- Sliding Words -->
+  <div class="text">
+    <span class="ayurveda">Ayurveda</span>
+    <span class="meets">Meets</span>
+    <span class="technology">Technology</span>
+  </div>
+
+  <!-- Logo + Text (flies to navbar on transition) -->
+  <div class="landing-logo">
+    <img src="Ayurlogy_logo4.png" class="logo-img" alt="logo">
+    <span>Ayurlogy</span>
+  </div>
+
+</div>
+
+<script>
+/* Netflix-style: Logo flies to corner, then transition to home */
+setTimeout(()=>{
+  sessionStorage.setItem('fromLanding', 'true');
+  document.body.style.transition = "opacity 0.8s";
+  document.body.style.opacity = 0;
+  setTimeout(()=>{ window.location.href = "/home"; }, 800);
+}, 5800);
+</script>
+
+</body>
+</html>
+
